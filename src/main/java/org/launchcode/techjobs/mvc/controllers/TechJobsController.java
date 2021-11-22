@@ -1,6 +1,5 @@
 package org.launchcode.techjobs.mvc.controllers;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
 import java.util.HashMap;
 
 public class TechJobsController {
@@ -24,11 +23,11 @@ public class TechJobsController {
     }
 
     // encapsulation: Getters
-    @ModelAttribute("action")
+    @ModelAttribute("actions")
     public static HashMap<String, String> getActionChoices(){return actionChoices; };
 
     @ModelAttribute("columns")
     public static HashMap<String, String> getColumnChoices(){return columnChoices; }
 
-
 }
+

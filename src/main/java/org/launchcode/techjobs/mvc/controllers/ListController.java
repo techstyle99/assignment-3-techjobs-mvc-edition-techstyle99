@@ -19,7 +19,9 @@ import java.util.HashMap;
 public class ListController extends TechJobsController {
 
     static HashMap<String, Object> tableChoices = new HashMap<>();
+
     public ListController () {
+
         tableChoices.put("all", "View All");
         tableChoices.put("employer", JobData.getAllEmployers());
         tableChoices.put("location", JobData.getAllLocations());
@@ -34,22 +36,21 @@ public class ListController extends TechJobsController {
         model.addAttribute("locations", JobData.getAllLocations());
         model.addAttribute("positions", JobData.getAllPositionTypes());
         model.addAttribute("skills", JobData.getAllCoreCompetency());
-
         return "list";
     }
 
     @GetMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam(required = false) String value) {
         ArrayList<Job> jobs;
-        if (column.equals("all")){
+        if (column.equals("all")) {
             jobs = JobData.findAll();
             model.addAttribute("title", "All Jobs");
         } else {
             jobs = JobData.findByColumnAndValue(column, value);
-            model.addAttribute("title", "Jobs with " + getColumnChoices().get(column) + ": " + value);
-        }
-        model.addAttribute("jobs", jobs);
+            model.addAttribute("title", "Jobs with " + getColumnChoices().get(column) + ": " + value);}
+            model.addAttribute("jobs", jobs);
 
         return "list-jobs";
     }
 }
+
